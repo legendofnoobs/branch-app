@@ -1,0 +1,63 @@
+<p-toast></p-toast>
+<div class="add-branch-container w-full max-w-3xl">
+    <h2 class="text-center text-red-600 font-bold mb-6">Add – Branch</h2>
+
+    <form [formGroup]="branchForm" (ngSubmit)="onSubmit()" class="grid">
+        <div class="col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="branchEn" class="font-medium">
+                    Branch - EN <span class="text-red-500 text-xs ml-1">Require</span>
+                </label>
+                <input pInputText id="branchEn" formControlName="branchEn" class="w-full"
+                    [class.ng-invalid]="branchForm.get('branchEn')?.invalid && branchForm.get('branchEn')?.touched"
+                    [class.ng-dirty]="branchForm.get('branchEn')?.touched" />
+                @if (branchForm.get('branchEn')?.touched) {
+                @if (branchForm.get('branchEn')?.hasError('required')) {
+                <small class="text-red-500">English branch name is required</small>
+                } @else if (branchForm.get('branchEn')?.hasError('pattern')) {
+                <small class="text-red-500">Please enter English characters only</small>
+                }
+                }
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6 mb-4">
+            <div class="flex flex-column gap-2">
+                <label for="branchAr" class="font-medium">
+                    Branch - AR <span class="text-red-500 text-xs ml-1">Require</span>
+                </label>
+                <input pInputText id="branchAr" formControlName="branchAr" class="w-full"
+                    [class.ng-invalid]="branchForm.get('branchAr')?.invalid && branchForm.get('branchAr')?.touched"
+                    [class.ng-dirty]="branchForm.get('branchAr')?.touched" />
+                @if (branchForm.get('branchAr')?.touched) {
+                @if (branchForm.get('branchAr')?.hasError('required')) {
+                <small class="text-red-500">Arabic branch name is required</small>
+                } @else if (branchForm.get('branchAr')?.hasError('pattern')) {
+                <small class="text-red-500">Please enter Arabic characters only</small>
+                }
+                }
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6 mb-6">
+            <div class="flex flex-column gap-2">
+                <label for="governorate" class="font-medium">
+                    Governorate <span class="text-red-500 text-xs ml-1">Require</span>
+                </label>
+                <p-select [options]="governorates" formControlName="governorate" optionLabel="label"
+                    placeholder="Select Governorate" class="w-full"
+                    [class.ng-invalid]="branchForm.get('governorate')?.invalid && branchForm.get('governorate')?.touched"
+                    [class.ng-dirty]="branchForm.get('governorate')?.touched"></p-select>
+                @if (branchForm.get('governorate')?.invalid && branchForm.get('governorate')?.touched) {
+                <small class="text-red-500">Please select a governorate</small>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 flex justify-content-center gap-3 mt-4">
+            <p-button label="Add" type="submit" severity="danger" class="btn-primary"></p-button>
+            <p-button label="Cancel" type="button" severity="secondary" [outlined]="true" (onClick)="onCancel()"
+                class="btn-secondary"></p-button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+.header-container {
+    height: 70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    background-color: #ffc107;
+    color: #6366f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.border-gray-200 {
+    border-color: #eeeeee !important;
+}

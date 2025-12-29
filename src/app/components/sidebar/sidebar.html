@@ -1,0 +1,32 @@
+<div class="sidebar-container py-4">
+    <div class="menu-list">
+        @for (item of menuItems; track item.label) {
+        <div class="menu-group" [class.expanded]="item.expanded">
+            <div class="menu-item py-3 px-4 flex align-items-center justify-content-between cursor-pointer"
+                [class.active]="item.active" (click)="toggleSubmenu(item)">
+                <span class="label">{{ item.label }}</span>
+                @if (item.hasSubmenu) {
+                <i class="pi" [class.pi-chevron-right]="!item.expanded" [class.pi-chevron-down]="item.expanded"></i>
+                }
+            </div>
+            @if (item.hasSubmenu && item.expanded) {
+            <div class="submenu pl-8 pr-4">
+                @for (sub of item.subItems; track sub) {
+                <div class="submenu-item py-2 text-sm text-gray-500 cursor-pointer hover:text-red-500">
+                    {{ sub }}
+                </div>
+                }
+            </div>
+            }
+        </div>
+        }
+
+        <div class="mt-4 pt-4 border-top-1 border-gray-100">
+            @for (item of footerItems; track item.label) {
+            <div class="menu-item py-3 px-4 cursor-pointer">
+                <span class="label text-gray-500">{{ item.label }}</span>
+            </div>
+            }
+        </div>
+    </div>
+</div>
