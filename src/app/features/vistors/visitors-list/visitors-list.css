@@ -1,0 +1,194 @@
+:host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.2s;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr:hover {
+    background-color: #f1f3f5 !important;
+    color: #000000 !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+}
+
+.badge-RE {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-PIM {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.badge-PM {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+
+/* PrimeNG Table overrides to match design */
+:host ::ng-deep .p-datatable-sm .p-datatable-tbody>tr>td {
+    font-size: 0.875rem;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.p-button-outlined.p-button-secondary {
+    border-color: #dee2e6;
+    color: #6c757d;
+}
+
+.p-button-outlined.p-button-secondary:hover {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+    color: #495057;
+}
+
+.pagination-footer {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.page-numbers .p-button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0;
+    justify-content: center;
+}
+
+.pagination-controls .p-button-text {
+    font-size: 0.875rem;
+}
+
+.pagination-info {
+    letter-spacing: 0.025em;
+}
+
+/* Action button (3 dots) refinements */
+:host ::ng-deep .p-button.p-button-text.p-button-secondary:hover {
+    background-color: #cccccc !important;
+    color: #000000 !important;
+}
+
+/* Dropdown menu refinements */
+::ng-deep .visitor-action-menu {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6;
+    padding: 0.25rem 0;
+}
+
+::ng-deep .visitor-action-menu .p-menuitem-link {
+    border-radius: 0;
+    transition: background-color 0.2s;
+    color: #000000 !important;
+}
+
+::ng-deep .visitor-action-menu .p-menuitem-link:hover {
+    background-color: #cccccc !important;
+    color: #cccccc !important;
+}
+
+::ng-deep .visitor-action-menu .p-menuitem-link:hover .p-menuitem-text,
+::ng-deep .visitor-action-menu .p-menuitem-link:hover .p-menuitem-icon {
+    color: #000000 !important;
+}
+
+/* Custom Dropdown Menu Styles */
+.custom-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    min-width: 180px;
+    padding: 0.5rem 0;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #000000;
+    font-size: 0.875rem;
+}
+
+.dropdown-item:hover {
+    background-color: #cccccc;
+}
+
+.dropdown-item i {
+    font-size: 0.875rem;
+    width: 16px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #dee2e6;
+    margin: 0.5rem 0;
+}
+
+.dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: transparent;
+}
+
+/* Position relative for dropdown container */
+.position-relative {
+    position: relative;
+}
+
+/* Filter Form Styles */
+.filter-container {
+    transition: all 0.3s ease;
+}
+
+.fade-in-down {
+    animation: fadeInDown 0.3s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,162 @@
+<div class="p-4" style="width: 100%;">
+    <!-- Header -->
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2 class="text-red-500 m-0">Visitors List</h2>
+        <div class="flex gap-3 align-items-center">
+            <button pButton label="Add Visitor" class="p-button-success bg-green-500 border-none px-4"></button>
+            <span class="text-blue-400 font-medium">2000 Visitors</span>
+            <i class="pi pi-filter text-xl cursor-pointer hover:text-red-500 transition-colors transition-duration-200"
+                [ngClass]="{'text-red-500': showFilters}" (click)="toggleFilters()"></i>
+        </div>
+    </div>
+
+    <!-- Filter Form -->
+    <div *ngIf="showFilters" class="filter-container fade-in-down mb-4 p-4 border-round shadow-1 bg-white">
+        <div class="grid formgrid p-fluid">
+            <!-- First Row -->
+            <div class="field col-12 md:col-3">
+                <label htmlFor="registerFrom" class="font-medium text-gray-700">Register From</label> <br>
+                <p-autocomplete [dropdown]="true" [suggestions]="filteredRegisterFromOptions"
+                    (completeMethod)="searchRegisterFrom($event)" [(ngModel)]="filterForm.registerFrom"
+                    placeholder="Register From" field="label"></p-autocomplete>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label htmlFor="targetGroup" class="font-medium text-gray-700">Target Group</label> <br>
+                <p-autocomplete [dropdown]="true" [suggestions]="filteredTargetGroupOptions"
+                    (completeMethod)="searchTargetGroup($event)" [(ngModel)]="filterForm.targetGroup"
+                    placeholder="Target Group" field="label"></p-autocomplete>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label htmlFor="ageGroup" class="font-medium text-gray-700">Age Group</label> <br>
+                <p-autocomplete [dropdown]="true" [suggestions]="filteredAgeGroupOptions"
+                    (completeMethod)="searchAgeGroup($event)" [(ngModel)]="filterForm.ageGroup" placeholder="Age Group"
+                    field="label"></p-autocomplete>
+            </div>
+            <div class="field col-12 md:col-3">
+                <i class="pi pi-search" style="margin-right: 5px;"></i>
+                <label htmlFor="search" class="font-medium text-gray-700">Search</label>
+                <br>
+                <input pInputText id="search" [(ngModel)]="filterForm.search" placeholder="Search" />
+            </div>
+
+            <!-- Second Row -->
+            <div class="field col-12 md:col-3">
+                <label htmlFor="fromDate" class="font-medium text-gray-700">From</label> <br>
+                <p-datepicker [(ngModel)]="filterForm.fromDate" [showIcon]="true"
+                    placeholder="(DD/MM/YYYY)"></p-datepicker>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label htmlFor="toDate" class="font-medium text-gray-700">To</label> <br>
+                <p-datepicker [(ngModel)]="filterForm.toDate" [showIcon]="true"
+                    placeholder="(DD/MM/YYYY)"></p-datepicker>
+            </div>
+            <div class="field col-12 md:col-6 flex align-items-end gap-2">
+                <button pButton label="Search"
+                    class="p-button-primary bg-blue-900 border-blue-900 w-auto px-4"></button>
+                <button pButton label="Clear" class="p-button-outlined p-button-secondary w-auto px-4"
+                    (click)="resetFilters()"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Buttons -->
+    <div class="flex justify-content-end gap-2 mb-3">
+        <button pButton icon="pi pi-print" label="Print" class="p-button-outlined p-button-secondary text-sm"></button>
+        <button pButton icon="pi pi-file-excel" label="Excel"
+            class="p-button-outlined p-button-secondary text-sm"></button>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-1 border-round overflow-hidden">
+        <p-table [value]="visitors" [rowHover]="true" styleClass="p-datatable-md" [tableStyle]="{'width': '100%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="gender">Gender <p-sortIcon field="gender"></p-sortIcon></th>
+                    <th pSortableColumn="age">Age <p-sortIcon field="age"></p-sortIcon></th>
+                    <th pSortableColumn="mobile">Mobile <p-sortIcon field="mobile"></p-sortIcon></th>
+                    <th pSortableColumn="targetGroup">Target group <p-sortIcon field="targetGroup"></p-sortIcon></th>
+                    <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                    <th pSortableColumn="egcId">EGC ID <p-sortIcon field="egcId"></p-sortIcon></th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-visitor let-rowIndex="rowIndex">
+                <tr class="h-4rem">
+                    <td>
+                        <div class="flex align-items-center gap-2">
+                            {{ visitor.name }}
+                        </div>
+                    </td>
+                    <td>{{ visitor.gender }}</td>
+                    <td>{{ visitor.age }}</td>
+                    <td>{{ visitor.mobile }}</td>
+                    <td>
+                        <span class="badge" [ngClass]="'badge-' + visitor.targetGroup">
+                            {{ visitor.targetGroup }}
+                        </span>
+                    </td>
+                    <td>{{ visitor.email }}</td>
+                    <td>{{ visitor.egcId }}</td>
+                    <td class="text-center position-relative">
+                        <button pButton icon="pi pi-ellipsis-h"
+                            class="p-button-rounded p-button-text p-button-secondary action-menu-trigger"
+                            (click)="toggleDropdown(rowIndex)"></button>
+
+                        <!-- Custom Dropdown Menu -->
+                        <div *ngIf="activeDropdownIndex === rowIndex" class="custom-dropdown-menu shadow-2">
+                            <div class="dropdown-item" (click)="onMenuItemClick('details', visitor)">
+                                <i class="pi pi-info-circle"></i>
+                                <span>Details</span>
+                            </div>
+                            <div class="dropdown-item" (click)="onMenuItemClick('change-password', visitor)">
+                                <i class="pi pi-lock"></i>
+                                <span>Change Password</span>
+                            </div>
+                            <div class="dropdown-item" (click)="onMenuItemClick('edit', visitor)">
+                                <i class="pi pi-pencil"></i>
+                                <span>Edit</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item"
+                                [ngClass]="visitor.status === 'Deactive' ? 'text-red-500' : 'text-green-500'"
+                                (click)="onMenuItemClick('toggle-status', visitor)">
+                                <i [class]="visitor.status === 'Deactive' ? 'pi pi-user-minus' : 'pi pi-user-plus'"></i>
+                                <span>{{ visitor.status === 'Deactive' ? 'Deactivate' : 'Activate' }}</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <!-- Pagination -->
+        <div class="pagination-footer flex flex-column align-items-center p-4 border-top-1 border-gray-100 bg-white">
+            <div class="pagination-controls flex align-items-center gap-2 mb-3">
+                <button pButton icon="pi pi-chevron-left" label="Previous"
+                    class="p-button-text p-button-secondary p-button-sm font-medium"></button>
+
+                <div class="page-numbers flex gap-1">
+                    <button pButton label="1" class="p-button-sm p-button-success bg-green-500 border-none"></button>
+                    <button pButton label="2" class="p-button-text p-button-secondary p-button-sm"></button>
+                    <button pButton label="3" class="p-button-text p-button-secondary p-button-sm"></button>
+                    <button pButton label="4" class="p-button-text p-button-secondary p-button-sm"></button>
+                    <button pButton label="5" class="p-button-text p-button-secondary p-button-sm"></button>
+                    <span class="flex align-items-center px-2 text-gray-400">...</span>
+                    <button pButton label="78" class="p-button-text p-button-secondary p-button-sm"></button>
+                </div>
+
+                <button pButton icon="pi pi-chevron-right" iconPos="right" label="Next"
+                    class="p-button-text p-button-secondary p-button-sm font-medium"></button>
+            </div>
+            <div class="pagination-info text-sm text-gray-500">
+                Showing <span class="font-bold text-gray-700">8</span> of <span
+                    class="font-bold text-gray-700">60</span>
+                out of <span class="font-bold text-gray-700">778</span> entries
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Backdrop to close dropdown when clicking outside -->
+<div *ngIf="activeDropdownIndex !== null" class="dropdown-backdrop" (click)="closeDropdown()"></div>

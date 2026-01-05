@@ -11,9 +11,11 @@
             </div>
             @if (item.hasSubmenu && item.expanded) {
             <div class="submenu pl-8 pr-4">
-                @for (sub of item.subItems; track sub) {
-                <div class="submenu-item py-2 text-sm text-gray-500 cursor-pointer hover:text-red-500">
-                    {{ sub }}
+                @for (sub of item.subItems; track sub.label) {
+                <div class="submenu-item py-2 text-sm text-gray-500 cursor-pointer hover:text-red-500 no-underline block"
+                    [routerLink]="sub.route" [class.cursor-default]="!sub.route"
+                    routerLinkActive="text-red-500 font-medium">
+                    {{ sub.label }}
                 </div>
                 }
             </div>
