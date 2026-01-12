@@ -33,3 +33,14 @@
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: 1024px) {
+    .layout-sidebar {
+        display: none;
+    }
+
+    .layout-content {
+        display: block;
+        padding: 0.5rem;
+    }
+}

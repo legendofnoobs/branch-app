@@ -1,4 +1,8 @@
-<div class="sidebar-container py-4">
+@if (layoutService.isSidebarVisible()) {
+<div class="sidebar-mask fixed top-0 left-0 w-full h-full bg-black-alpha-50 z-5" (click)="layoutService.closeSidebar()">
+</div>
+}
+<div class="sidebar-container py-4" [class.sidebar-mobile-active]="layoutService.isSidebarVisible()">
     <div class="menu-list">
         @for (item of menuItems; track item.label) {
         <div class="menu-group" [class.expanded]="item.expanded">
@@ -14,7 +18,7 @@
                 @for (sub of item.subItems; track sub.label) {
                 <div class="submenu-item py-2 text-sm text-gray-500 cursor-pointer hover:text-red-500 no-underline block"
                     [routerLink]="sub.route" [class.cursor-default]="!sub.route"
-                    routerLinkActive="text-red-500 font-medium">
+                    routerLinkActive="text-red-500 font-medium" (click)="layoutService.closeSidebar()">
                     {{ sub.label }}
                 </div>
                 }

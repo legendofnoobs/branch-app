@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LayoutService } from '../../core/services/layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +9,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sidebar.css',
 })
 export class SidebarComponent {
+  constructor(public layoutService: LayoutService) { }
   menuItems = [
     {
       label: 'Visitors',

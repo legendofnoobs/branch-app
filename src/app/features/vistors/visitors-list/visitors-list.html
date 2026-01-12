@@ -1,4 +1,4 @@
-<div class="p-4" style="width: 100%;">
+<div class="p-4" style="width: 100%; max-width: 100vw; overflow-x: hidden;">
     <!-- Header -->
     <div class="flex justify-content-between align-items-center mb-4">
         <h2 class="text-red-500 m-0">Visitors List</h2>
@@ -14,25 +14,25 @@
     <div *ngIf="showFilters" class="filter-container fade-in-down mb-4 p-4 border-round shadow-1 bg-white">
         <div class="grid formgrid p-fluid">
             <!-- First Row -->
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 sm:col-6 md:col-4 lg:col-3">
                 <label htmlFor="registerFrom" class="font-medium text-gray-700">Register From</label> <br>
                 <p-autocomplete [dropdown]="true" [suggestions]="filteredRegisterFromOptions"
                     (completeMethod)="searchRegisterFrom($event)" [(ngModel)]="filterForm.registerFrom"
                     placeholder="Register From" field="label"></p-autocomplete>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 sm:col-6 md:col-4 lg:col-3">
                 <label htmlFor="targetGroup" class="font-medium text-gray-700">Target Group</label> <br>
                 <p-autocomplete [dropdown]="true" [suggestions]="filteredTargetGroupOptions"
                     (completeMethod)="searchTargetGroup($event)" [(ngModel)]="filterForm.targetGroup"
                     placeholder="Target Group" field="label"></p-autocomplete>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 sm:col-6 md:col-4 lg:col-3">
                 <label htmlFor="ageGroup" class="font-medium text-gray-700">Age Group</label> <br>
                 <p-autocomplete [dropdown]="true" [suggestions]="filteredAgeGroupOptions"
                     (completeMethod)="searchAgeGroup($event)" [(ngModel)]="filterForm.ageGroup" placeholder="Age Group"
                     field="label"></p-autocomplete>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 sm:col-6 md:col-4 lg:col-3">
                 <i class="pi pi-search" style="margin-right: 5px;"></i>
                 <label htmlFor="search" class="font-medium text-gray-700">Search</label>
                 <br>
@@ -40,20 +40,20 @@
             </div>
 
             <!-- Second Row -->
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 sm:col-6 md:col-4 lg:col-3">
                 <label htmlFor="fromDate" class="font-medium text-gray-700">From</label> <br>
                 <p-datepicker [(ngModel)]="filterForm.fromDate" [showIcon]="true"
                     placeholder="(DD/MM/YYYY)"></p-datepicker>
             </div>
-            <div class="field col-12 md:col-3">
+            <div class="field col-12 sm:col-6 md:col-4 lg:col-3">
                 <label htmlFor="toDate" class="font-medium text-gray-700">To</label> <br>
                 <p-datepicker [(ngModel)]="filterForm.toDate" [showIcon]="true"
                     placeholder="(DD/MM/YYYY)"></p-datepicker>
             </div>
-            <div class="field col-12 md:col-6 flex align-items-end gap-2">
+            <div class="field col-12 md:col-6 flex align-items-end gap-2 mt-3 md:mt-0">
                 <button pButton label="Search"
-                    class="p-button-primary bg-blue-900 border-blue-900 w-auto px-4"></button>
-                <button pButton label="Clear" class="p-button-outlined p-button-secondary w-auto px-4"
+                    class="p-button-primary bg-blue-900 border-blue-900 flex-1 md:w-auto px-4"></button>
+                <button pButton label="Clear" class="p-button-outlined p-button-secondary flex-1 md:w-auto px-4"
                     (click)="resetFilters()"></button>
             </div>
         </div>

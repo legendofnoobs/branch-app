@@ -18,3 +18,15 @@
 .border-gray-200 {
     border-color: #eeeeee !important;
 }
+
+.mobile-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: #64748b;
+}
+
+@media (max-width: 1024px) {
+    .mobile-toggle {
+        display: block;
+    }
+}
